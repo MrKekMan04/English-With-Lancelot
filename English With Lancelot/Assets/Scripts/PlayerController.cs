@@ -1,17 +1,26 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
-    Rigidbody2D player;
-    public float speed;
+    private const string HorizontalAxis = "Horizontal";
+    private const string VerticalAxis = "Vertical";
+    
+    [SerializeField] private float speed;
 
-    void Start()
-    {
-        player = GetComponent<Rigidbody2D>();
-    }
+    private Rigidbody2D _player;
 
-    void Update()
+    private void Start() => _player = GetComponent<Rigidbody2D>();
+
+    private void FixedUpdate() => Move();
+
+    private void Move()
     {
-        player.velocity = new Vector2(Input.GetAxis("Horizontal") * speed, Input.GetAxis("Vertical") * speed);
+        var horizontalMovement = Input.GetAxis(HorizontalAxis);
+        var verticalMovement = Input.GetAxis(VerticalAxis);
+        
+        var totalMovement = new Vector2(horizontalMovement, verticalMovement);
+        
+        _player.velocity = totalMovement * speed;
     }
 }
