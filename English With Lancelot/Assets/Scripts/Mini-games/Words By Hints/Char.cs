@@ -3,12 +3,12 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Button), typeof(TextMeshProUGUI))]
+[RequireComponent(typeof(UnityEngine.UI.Button), typeof(TextMeshProUGUI))]
 public class Char : MonoBehaviour
 {
     private Inputs _inputs;
     
-    private Button _button;
+    private UnityEngine.UI.Button _button;
     private TextMeshProUGUI _buttonText;
 
     private Char _keyboardsCharReference;
@@ -17,7 +17,7 @@ public class Char : MonoBehaviour
 
     private void Init()
     {
-        _button = GetComponent<Button>();
+        _button = GetComponent<UnityEngine.UI.Button>();
         _buttonText = GetComponentInChildren<TextMeshProUGUI>();
         _inputs = GameObject.Find("Inputs").GetComponent<Inputs>();
     }
