@@ -1,12 +1,12 @@
 using System.Collections.Generic;
-using Mini_games.Quiz;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ButtonsScript : MonoBehaviour
+public class QuizButtons : MonoBehaviour
 {
     [SerializeField] private QuizGame quizGame;
+    
     private Button[] _buttons;
 
     public void Init()
@@ -15,19 +15,14 @@ public class ButtonsScript : MonoBehaviour
         SetButtonsText();
     }
     
-    public void CheckAnswer(TextMeshProUGUI text)
-    {
-        quizGame.CheckIsAnswerRight(text.text);
-    }
-    
+    public void CheckAnswer(TextMeshProUGUI text) => quizGame.CheckIsAnswerRight(text.text);
+
     private void SetButtonsText()
     {
         var responses = ShuffleResponses(quizGame.CurrentLevel.Responses);
         
         for (var i = 0; i < _buttons.Length; i++)
-        {
             _buttons[i].GetComponentInChildren<TextMeshProUGUI>().text = responses[i];
-        }
     }
 
     private static List<string> ShuffleResponses(List<string> list)
