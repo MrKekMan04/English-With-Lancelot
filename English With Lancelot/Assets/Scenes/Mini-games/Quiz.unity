@@ -697,7 +697,7 @@ GameObject:
   - component: {fileID: 553318552}
   - component: {fileID: 553318551}
   m_Layer: 5
-  m_Name: MainUI
+  m_Name: GameUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1526,7 +1526,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 59188586}
   questionText: {fileID: 1331703343}
-  buttonsScript: {fileID: 248283141}
+  quizButtons: {fileID: 248283141}
 --- !u!4 &1491295007
 Transform:
   m_ObjectHideFlags: 0
