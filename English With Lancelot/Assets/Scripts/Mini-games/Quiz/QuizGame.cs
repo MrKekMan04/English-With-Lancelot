@@ -1,77 +1,59 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Mini_games.Quiz;
-using Newtonsoft.Json;
+using Mini_games;
+using Mini_games.Words_By_Hints;
 using TMPro;
 using UnityEngine;
 
-public class QuizGame : MonoBehaviour
+public class QuizGame : Game
 {
-    public QuizLevel CurrentLevel { get; private set; }
-    
-    private const string DataPath = "Mini-games/Quiz/data";
-    
-    [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI questionText;
-    [SerializeField] private ButtonsScript buttonsScript;
+    [SerializeField] private QuizButtons quizButtons;
 
-    private Dictionary<string, string> _quizData;
-    private int _score;
-
-    private void Awake() => Init();
-
-    private void Init()
+    protected override void Init()
     {
-        _quizData = GetData(DataPath);
+        GameData = GetData(GameConstants.QuizDataPath);
 
         NextLevel();
-    }
-
-    private static Dictionary<string, string> GetData(string path)
-    {
-        var json = Resources.Load<TextAsset>(path).text;
-
-        return JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
     }
 
     private void NextLevel()
     {
         CurrentLevel = GetNextLevel();
 
-        buttonsScript.Init();
+        quizButtons.Init();
 
-        questionText.text = CurrentLevel.Question;
+        questionText.text = GameData[CurrentLevel.Answer].FirstOrDefault();
     }
 
-    public void CheckIsAnswerRight(string userInput)
+    public override void CheckIsAnswerRight(string userInput)
     {
         if (CurrentLevel.Answer.Equals(userInput, StringComparison.OrdinalIgnoreCase))
+        {
+            AddScore(1);
             Win();
+        }
         else
             Lose();
-        
+    }
+
+    private Level GetNextLevel()
+    {
+        var answer = GetRandomWord(GameData);
+        var responses = new List<string> { answer };
+
+        for (var i = 0; i < GameConstants.ResponsesCount - 1; i++)
+            responses.Add(GetRandomWord(GameData));
+
+        return new Level(answer, responses);
+    }
+
+    private void Win() => NextLevel();
+
+    private void Lose()
+    {
+        // TODO: Lose
         NextLevel();
     }
-
-    private QuizLevel GetNextLevel()
-    {
-        var answer = GetRandomWord(_quizData);
-        var question = _quizData[answer];
-        var responses = new List<string>(new[] { answer });
-
-        for (var i = 0; i < 3; i++) 
-            responses.Add(GetRandomWord(_quizData));
-
-        return new QuizLevel(question, answer, responses);
-    }
-
-    private static string GetRandomWord(Dictionary<string, string> data) =>
-        data.Keys.ToArray()[new System.Random().Next(data.Keys.Count)];
-
-    private void Win() => SetScore(++_score);
-
-    private void Lose() => SetScore(--_score);
-
-    private void SetScore(int score) => scoreText.text = $"Points: {score}";
 }
