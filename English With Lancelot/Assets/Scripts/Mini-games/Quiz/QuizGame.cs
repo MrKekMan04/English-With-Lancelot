@@ -4,9 +4,7 @@ using System.Linq;
 using Mini_games.Quiz;
 using Newtonsoft.Json;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class QuizGame : MonoBehaviour
 {
@@ -52,6 +50,8 @@ public class QuizGame : MonoBehaviour
             Win();
         else
             Lose();
+        
+        NextLevel();
     }
 
     private QuizLevel GetNextLevel()
@@ -69,17 +69,9 @@ public class QuizGame : MonoBehaviour
     private static string GetRandomWord(Dictionary<string, string> data) =>
         data.Keys.ToArray()[new System.Random().Next(data.Keys.Count)];
 
-    private void Win()
-    {
-        SetScore(++_score);
-        NextLevel();
-    }
+    private void Win() => SetScore(++_score);
 
-    private void Lose()
-    {
-        SetScore(--_score);
-        NextLevel();
-    }
+    private void Lose() => SetScore(--_score);
 
     private void SetScore(int score) => scoreText.text = $"Points: {score}";
 }
