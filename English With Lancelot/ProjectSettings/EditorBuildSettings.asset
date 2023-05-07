@@ -11,4 +11,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Village.unity
     guid: b818cec71ea00d44b9af74c6d422dd8f
+  - enabled: 1
+    path: Assets/Scenes/Mini-games/Quiz.unity
+    guid: 54f11f7c4b2340c4db4a84a4dba87c8e
+  - enabled: 1
+    path: Assets/Scenes/Mini-games/Words By Hints.unity
+    guid: 8417fdd6387af1b48a58745beb3ef542
+  - enabled: 1
+    path: Assets/Scenes/Mini-games/Words From Word.unity
+    guid: b365f44e2e58699489a64c97d5369de5
   m_configObjects: {}
