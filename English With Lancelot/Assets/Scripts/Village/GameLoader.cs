@@ -1,12 +1,10 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameLoader : MonoBehaviour
 {
-    [SerializeField] private TMPro.TextMeshProUGUI name;
+    [SerializeField] private TextMeshProUGUI name;
 
-    public void LoadGame()
-    {
-        SceneManager.LoadScene(name.text);
-    }
+    public void LoadGame() => SceneManager.LoadScene(name.text);
 }
