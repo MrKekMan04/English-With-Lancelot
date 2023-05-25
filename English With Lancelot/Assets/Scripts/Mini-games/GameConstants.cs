@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace Mini_games
 {
     public class GameConstants

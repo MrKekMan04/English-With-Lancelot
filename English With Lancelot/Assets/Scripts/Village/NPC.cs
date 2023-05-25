@@ -1,32 +1,29 @@
+using GameUI;
 using UnityEngine;
-public class NPC : MonoBehaviour
+
+namespace Village
 {
-    [SerializeField] private GameObject window;
-    [SerializeField] private TMPro.TextMeshProUGUI name;
-    [SerializeField] private TMPro.TextMeshProUGUI description;
-    [SerializeField] private string gameName;
-    [SerializeField] private string gameDescription;
-    
-    private void UpdateInfo()
+    public class NPC : MonoBehaviour
     {
-        name.text = gameName;
-        description.text = gameDescription;
-    }
+        [SerializeField] private GameObject window;
+        [SerializeField] private string gameName;
+        [SerializeField] private string gameDescription;
 
-    private void OnTriggerEnter2D(Collider2D col)
-    {
-        if (col.CompareTag("Player"))
+        private MainUI _mainUI;
+
+        public void Start() => _mainUI = window.GetComponent<MainUI>();
+
+        private void OnTriggerEnter2D(Collider2D col)
         {
-            window.SetActive(true);
-            UpdateInfo();
+            if (!col.CompareTag("Player")) return;
+            _mainUI.Open();
+            _mainUI.UpdateInfo(gameName, gameDescription);
         }
-    }
 
-    private void OnTriggerExit2D(Collider2D col)
-    {
-        if (col.CompareTag("Player"))
+        private void OnTriggerExit2D(Collider2D col)
         {
-            window.SetActive(false);
+            if (!col.CompareTag("Player")) return;
+            _mainUI.Hide();
         }
     }
 }

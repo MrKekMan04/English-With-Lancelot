@@ -107,7 +107,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: NPC_0
+      name: NPC_2
       rect:
         serializedVersion: 2
         x: 147
@@ -128,7 +128,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NPC_1
+      name: NPC_3
       rect:
         serializedVersion: 2
         x: 261
@@ -149,11 +149,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NPC_2
+      name: NPC_1
       rect:
         serializedVersion: 2
         x: 342
-        y: 67
+        y: 68
         width: 86
         height: 121
       alignment: 0
@@ -180,9 +180,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      NPC_0: -1118011102
-      NPC_1: 2073461541
-      NPC_2: 2085243246
+      NPC_1: 2085243246
+      NPC_2: -1118011102
+      NPC_3: 2073461541
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
