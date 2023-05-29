@@ -5,15 +5,21 @@ using Mini_games;
 using Mini_games.Words_By_Hints;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class QuizGame : Game
 {
     [SerializeField] private TextMeshProUGUI questionText;
     [SerializeField] private QuizButtons quizButtons;
+    [SerializeField] private Image[] hearts;
+    
+    private int _hearts;
 
     protected override void Init()
     {
         GameData = GetData(GameConstants.QuizDataPath);
+        _hearts = 3;
 
         NextLevel();
     }
@@ -53,7 +59,18 @@ public class QuizGame : Game
 
     private void Lose()
     {
-        // TODO: Lose
-        NextLevel();
+        RemoveHeart();
+
+        if (_hearts > 0)
+            NextLevel();
+        else
+            SceneManager.LoadScene(GameConstants.VillageSceneName);
+    }
+
+    private void RemoveHeart()
+    {
+        _hearts--;
+        
+        hearts.First(image => image.gameObject.activeSelf).gameObject.SetActive(false);
     }
 }
