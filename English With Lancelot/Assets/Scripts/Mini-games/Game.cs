@@ -1,20 +1,36 @@
 using System.Collections.Generic;
 using System.Linq;
+using Mini_games;
 using Mini_games.Words_By_Hints;
 using Newtonsoft.Json;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public abstract class Game : MonoBehaviour
 {
     public Level CurrentLevel { get; protected set; }
 
     [SerializeField] protected TextMeshProUGUI scoreText;
+    [SerializeField] protected Image clockSprite;
+    [SerializeField] protected float levelTime;
 
     protected Dictionary<string, List<string>> GameData;
-    protected int Score;
+    private int _score;
+    private float _timeElapsed;
 
     private void Awake() => Init();
+
+    private void Update()
+    {
+        _timeElapsed += Time.deltaTime;
+
+        if (_timeElapsed >= levelTime) 
+            SceneManager.LoadScene(GameConstants.VillageSceneName);
+
+        clockSprite.fillAmount = (levelTime - _timeElapsed) / levelTime;
+    }
 
     protected abstract void Init();
     
@@ -32,10 +48,10 @@ public abstract class Game : MonoBehaviour
 
     protected void AddScore(int score)
     {
-        Score += score;
+        _score += score;
         
         UpdateScore();
     }
 
-    private void UpdateScore() => scoreText.text = $"Points: {Score}";
+    private void UpdateScore() => scoreText.text = $"Points: {_score}";
 }
