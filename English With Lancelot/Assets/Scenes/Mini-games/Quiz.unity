@@ -170,8 +170,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278648576
+  m_fontColor: {r: 0, g: 1, b: 0.023529412, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -354,9 +354,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 107034561}
-        m_TargetAssemblyTypeName: GameUiButton, Assembly-CSharp
-        m_MethodName: GoToVillage
+      - m_Target: {fileID: 1491295006}
+        m_TargetAssemblyTypeName: Game, Assembly-CSharp
+        m_MethodName: Lose
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2008,6 +2008,7 @@ MonoBehaviour:
   scoreText: {fileID: 59188586}
   clockSprite: {fileID: 1627144830}
   levelTime: 30
+  expForScore: 4
   questionText: {fileID: 1331703343}
   quizButtons: {fileID: 248283141}
   hearts:

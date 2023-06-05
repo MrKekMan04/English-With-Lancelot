@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Mini_games;
 using UnityEngine;
 
 namespace GameUI
@@ -9,13 +10,15 @@ namespace GameUI
         [SerializeField] private List<Character> characters;
         [SerializeField] private Sprite background;
 
-        private bool _isTriggered; 
+        private int _isTriggered;
  
-        private void OnTriggerEnter2D(Collider2D coll)
+        private void Start()
         {
-            if (_isTriggered || !coll.CompareTag("Player")) return;
+            _isTriggered = PlayerPrefs.GetInt(GameConstants.IsStartShownKey, 0);
+            if (_isTriggered == 1) return;
             FindObjectOfType<DialogueManager>().StartDialogue(path, background, characters);
-            _isTriggered = true;
+            _isTriggered = 1;
+            PlayerPrefs.SetInt(GameConstants.IsStartShownKey, _isTriggered);
         }
     }
 }

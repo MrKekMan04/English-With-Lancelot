@@ -12,5 +12,11 @@ namespace Mini_games
         public const int WfwAnswersLimit = 5;
         
         public const string VillageSceneName = "Village";
+
+        public const string IsStartShownKey = "IsStartShown";
+
+        public const string PlayerExpKey = "PlayerExp";
+        public const string PlayerLevelKey = "PlayerLevel";
+        public const int LevelExpIncrease = 100;
     }
 }
