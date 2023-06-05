@@ -15,6 +15,7 @@ public abstract class Game : MonoBehaviour
     [SerializeField] protected TextMeshProUGUI scoreText;
     [SerializeField] protected Image clockSprite;
     [SerializeField] protected float levelTime;
+    [SerializeField] protected int expForScore;
 
     protected Dictionary<string, List<string>> GameData;
     private int _score;
@@ -26,8 +27,8 @@ public abstract class Game : MonoBehaviour
     {
         _timeElapsed += Time.deltaTime;
 
-        if (_timeElapsed >= levelTime) 
-            SceneManager.LoadScene(GameConstants.VillageSceneName);
+        if (_timeElapsed >= levelTime)
+            Lose();
 
         clockSprite.fillAmount = (levelTime - _timeElapsed) / levelTime;
     }
@@ -35,6 +36,13 @@ public abstract class Game : MonoBehaviour
     protected abstract void Init();
     
     public abstract void CheckIsAnswerRight(string userInput);
+
+    public virtual void Lose()
+    {
+        LevelingSystem.AddExp(_score * expForScore);
+
+        SceneManager.LoadScene(GameConstants.VillageSceneName);
+    }
 
     protected static Dictionary<string, List<string>> GetData(string path)
     {

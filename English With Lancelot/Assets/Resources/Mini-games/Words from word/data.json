@@ -51,7 +51,9 @@
         "MAN",
         "WET",
         "WANE",
-        "ATE"
+        "ATE",
+        "NOT",
+        "NOTE"
     ],
     "THOUGHT": [
         "OUGHT",
@@ -137,6 +139,7 @@
         "SAG",
         "GEM",
         "SEA",
+        "GAS",
         "MESS",
         "SAGE",
         "SAME",
@@ -247,8 +250,7 @@
         "COLT",
         "CONE",
         "COTE",
-        "TOLL",
-        "TOOL"
+        "TOLL"
     ],
     "EXPLAIN": [
         "ALE",
@@ -268,20 +270,13 @@
         "PILE",
         "PINE"
     ],
-    "CONDITION": [
-        "COIN",
-        "DINT",
-        "ICON",
-        "INTO",
-        "NOD",
-        "NOT"
-    ],
     "DOUBLE": [
         "BLUE",
         "BODE",
         "BOLD",
         "DOLE",
         "LOBE",
+        "BED",
         "LOUD"
     ],
     "CONTINUE": [
@@ -318,6 +313,9 @@
     ],
     "MUSTACHE": [
         "ACHE",
+        "ATE",
+        "CAT",
+        "MUST",
         "AMUSE",
         "CASE",
         "CAST",
@@ -378,6 +376,7 @@
     "EMBARRASSED": [
         "ARE",
         "BAD",
+        "BAR",
         "BARD",
         "BARE",
         "BASE",
