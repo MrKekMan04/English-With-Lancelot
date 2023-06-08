@@ -6,7 +6,7 @@ namespace GameUI
 {
     public class DialogueTrigger : MonoBehaviour 
     {
-        [SerializeField] private string path;
+        [TextArea][SerializeField] private string text;
         [SerializeField] private List<Character> characters;
         [SerializeField] private Sprite background;
 
@@ -15,8 +15,8 @@ namespace GameUI
         private void Start()
         {
             _isTriggered = PlayerPrefs.GetInt(GameConstants.IsStartShownKey, 0);
-            if (_isTriggered == 1) return;
-            FindObjectOfType<DialogueManager>().StartDialogue(path, background, characters);
+            //if (_isTriggered == 1) return;
+            FindObjectOfType<DialogueManager>().StartDialogue(text, background, characters);
             _isTriggered = 1;
             PlayerPrefs.SetInt(GameConstants.IsStartShownKey, _isTriggered);
         }
