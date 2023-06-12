@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.IO;
+using Mini_games;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,26 +10,30 @@ namespace GameUI
     public class DialogueManager : MonoBehaviour
     {
         [SerializeField] private Animator animator;
-        [SerializeField] private GameObject something;
+        [SerializeField] private GameObject grid;
         [SerializeField] private TextMeshProUGUI nameText;
         [SerializeField] private TextMeshProUGUI dialogueText;
         [SerializeField] private GameObject charPrefab;
 
         private List<GameObject> _characters;
         private Rigidbody2D _player;
-        private SpriteRenderer _spriteRenderer;
+        private Image _background;
         private Queue<string> _dialogue;
+        private GameObject _button;
+        private bool _isEnd;
 
-        public void StartDialogue(string path, Sprite sprite, List<Character> characters)
+        public void StartDialogue(string text, Sprite background, List<Character> characters)
         {
             _player.constraints = RigidbodyConstraints2D.FreezePosition;
 
-            _spriteRenderer.sprite = sprite;
-            _spriteRenderer.enabled = true;
+            _background.sprite = background;
+            _background.enabled = true;
+            _button.SetActive(false);
+            _isEnd = true;
 
-            animator.SetBool("IsOpen", false);
+            animator.SetBool(GameConstants.MenuPopUpIsOpenKey, false);
 
-            _dialogue = new Queue<string>(File.ReadAllText(path).Split('\n'));
+            _dialogue = new Queue<string>(text.Split('\n'));
 
             InitCharacters(characters);
             DisplayNextSentence();
@@ -39,9 +43,10 @@ namespace GameUI
         {
             foreach (var character in characters)
             {
-                var x = Instantiate(charPrefab, something.GetComponent<GridLayoutGroup>().transform, true);
-                x.GetComponentInChildren<SpriteRenderer>().sprite = character.sprite;
-                _characters.Add(x);
+                var charInstant = Instantiate(charPrefab, grid.GetComponent<GridLayoutGroup>().transform, true);
+                charInstant.GetComponentInChildren<SpriteRenderer>().sprite = character.sprite;
+
+                _characters.Add(charInstant);
             }
         }
 
@@ -73,23 +78,26 @@ namespace GameUI
         private void EndDialogue()
         {
             _player.constraints = RigidbodyConstraints2D.FreezeRotation;
-            animator.SetBool("IsOpen", true);
-            _spriteRenderer.enabled = false;
-
+            animator.SetBool(GameConstants.MenuPopUpIsOpenKey, true);
+            _background.enabled = false;
+            _isEnd = true;
+            _button.SetActive(true);
+            
             foreach (var character in _characters)
                 Destroy(character);
         }
 
         private void Start()
         {
+            _button = GameObject.Find("Button");
             _player = GameObject.Find("Player").GetComponent<Rigidbody2D>();
-            _spriteRenderer = GameObject.Find("Background").GetComponent<SpriteRenderer>();
+            _background = GameObject.Find("UI").GetComponent<Image>();
             _characters = new List<GameObject>();
         }
 
         private void Update()
         {
-            if (Input.GetMouseButtonDown(0)) DisplayNextSentence();
+            if (_isEnd! && Input.GetMouseButtonDown(0)) DisplayNextSentence();
         }
     }
 }
