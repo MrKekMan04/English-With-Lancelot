@@ -1,10 +1,9 @@
+using Mini_games;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
-    private const string HorizontalAxis = "Horizontal";
-    private const string VerticalAxis = "Vertical";
     
     [SerializeField] private Animator animator;
     [SerializeField] private float speed;
@@ -22,22 +21,22 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        var horizontalMovement = Input.GetAxis(HorizontalAxis);
-        var verticalMovement = Input.GetAxis(VerticalAxis);
+        var horizontalMovement = Input.GetAxis(GameConstants.HorizontalAxis);
+        var verticalMovement = Input.GetAxis(GameConstants.VerticalAxis);
         
         var totalMovement = new Vector2(horizontalMovement, verticalMovement);
         
-        animator.SetBool("isWalking", false);
+        animator.SetBool(GameConstants.PlayerIsWalkingKey, false);
         
         if (totalMovement != Vector2.zero)
         {
-            animator.SetBool("isWalking", true);
+            animator.SetBool(GameConstants.PlayerIsWalkingKey, true);
             _player.velocity = totalMovement * speed;
         }
         
-        if (Input.GetAxisRaw("Horizontal") > 0)
+        if (Input.GetAxisRaw(GameConstants.HorizontalAxis) > 0)
             _renderer.flipX = true;
-        else if (Input.GetAxisRaw("Horizontal") < 0)
+        else if (Input.GetAxisRaw(GameConstants.HorizontalAxis) < 0)
             _renderer.flipX = false;
     }
 }

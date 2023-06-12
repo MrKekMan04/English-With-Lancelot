@@ -18,5 +18,11 @@ namespace Mini_games
         public const string PlayerExpKey = "PlayerExp";
         public const string PlayerLevelKey = "PlayerLevel";
         public const int LevelExpIncrease = 100;
+
+        public const string MenuPopUpIsOpenKey = "IsOpen";
+        public const string PlayerIsWalkingKey = "isWalking";
+        
+        public const string HorizontalAxis = "Horizontal";
+        public const string VerticalAxis = "Vertical";
     }
 }

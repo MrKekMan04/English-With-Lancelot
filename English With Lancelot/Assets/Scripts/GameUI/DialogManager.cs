@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Mini_games;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -30,7 +31,7 @@ namespace GameUI
             _button.SetActive(false);
             _isEnd = true;
 
-            animator.SetBool("IsOpen", false);
+            animator.SetBool(GameConstants.MenuPopUpIsOpenKey, false);
 
             _dialogue = new Queue<string>(text.Split('\n'));
 
@@ -77,7 +78,7 @@ namespace GameUI
         private void EndDialogue()
         {
             _player.constraints = RigidbodyConstraints2D.FreezeRotation;
-            animator.SetBool("IsOpen", true);
+            animator.SetBool(GameConstants.MenuPopUpIsOpenKey, true);
             _background.enabled = false;
             _isEnd = true;
             _button.SetActive(true);
