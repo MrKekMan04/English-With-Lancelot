@@ -1,10 +1,10 @@
+using System;
 using Mini_games;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
-    
     [SerializeField] private Animator animator;
     [SerializeField] private float speed;
     
@@ -15,7 +15,8 @@ public class PlayerController : MonoBehaviour
     {
         _player = GetComponent<Rigidbody2D>();
         _renderer = GetComponent<SpriteRenderer>();
-    } 
+        transform.position = new Vector3(PlayerPrefs.GetFloat("X"), PlayerPrefs.GetFloat("Y"), 0);
+    }
 
     private void FixedUpdate() => Move();
 
