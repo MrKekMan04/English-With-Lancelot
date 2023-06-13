@@ -8184,7 +8184,7 @@ GameObject:
   - component: {fileID: 1054725956}
   - component: {fileID: 1054725958}
   - component: {fileID: 1054725957}
-  m_Layer: 6
+  m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44716,7 +44716,7 @@ GameObject:
   - component: {fileID: 1721035293}
   - component: {fileID: 1721035295}
   - component: {fileID: 1721035294}
-  m_Layer: 6
+  m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
