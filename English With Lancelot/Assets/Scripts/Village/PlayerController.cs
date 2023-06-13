@@ -26,14 +26,9 @@ public class PlayerController : MonoBehaviour
         
         var totalMovement = new Vector2(horizontalMovement, verticalMovement);
         
-        animator.SetBool(GameConstants.PlayerIsWalkingKey, false);
-        
-        if (totalMovement != Vector2.zero)
-        {
-            animator.SetBool(GameConstants.PlayerIsWalkingKey, true);
-            _player.velocity = totalMovement * speed;
-        }
-        
+        animator.SetBool(GameConstants.PlayerIsWalkingKey, totalMovement != Vector2.zero);
+        _player.velocity = totalMovement * speed;
+
         if (Input.GetAxisRaw(GameConstants.HorizontalAxis) > 0)
             _renderer.flipX = true;
         else if (Input.GetAxisRaw(GameConstants.HorizontalAxis) < 0)
