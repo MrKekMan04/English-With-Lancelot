@@ -57,7 +57,7 @@ namespace GameUI
                 EndDialogue();
                 return;
             }
-
+            
             var sentence = _dialogue.Dequeue().Split(':');
             nameText.text = sentence[0];
 
@@ -80,7 +80,7 @@ namespace GameUI
             _player.constraints = RigidbodyConstraints2D.FreezeRotation;
             animator.SetBool(GameConstants.MenuPopUpIsOpenKey, true);
             _background.enabled = false;
-            _isEnd = true;
+            _isEnd = false;
             _button.SetActive(true);
             
             foreach (var character in _characters)

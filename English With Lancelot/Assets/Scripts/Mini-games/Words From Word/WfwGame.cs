@@ -1,5 +1,4 @@
 using Mini_games;
-using Mini_games.Words_By_Hints;
 using UnityEngine;
 
 public class WfwGame : GameWithKeyboard

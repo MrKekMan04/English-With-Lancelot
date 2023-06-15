@@ -15,7 +15,7 @@ public class LevelUi : MonoBehaviour
         var currentExp = playerStats[GameConstants.PlayerExpKey];
         var currentLevel = playerStats[GameConstants.PlayerLevelKey];
         
-        SetBarValue((float)currentExp / (currentLevel * GameConstants.LevelExpIncrease));
+        SetBarValue((float)currentExp / ((currentLevel + 1) * GameConstants.LevelExpIncrease));
         SetCurrentLevel(currentLevel);
     }
 

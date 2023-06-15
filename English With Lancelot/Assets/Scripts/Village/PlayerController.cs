@@ -4,7 +4,6 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
-    
     [SerializeField] private Animator animator;
     [SerializeField] private float speed;
     
@@ -15,7 +14,8 @@ public class PlayerController : MonoBehaviour
     {
         _player = GetComponent<Rigidbody2D>();
         _renderer = GetComponent<SpriteRenderer>();
-    } 
+        transform.position = new Vector3(PlayerPrefs.GetFloat("X", 0), PlayerPrefs.GetFloat("Y", 0), 0);
+    }
 
     private void FixedUpdate() => Move();
 
@@ -26,14 +26,9 @@ public class PlayerController : MonoBehaviour
         
         var totalMovement = new Vector2(horizontalMovement, verticalMovement);
         
-        animator.SetBool(GameConstants.PlayerIsWalkingKey, false);
-        
-        if (totalMovement != Vector2.zero)
-        {
-            animator.SetBool(GameConstants.PlayerIsWalkingKey, true);
-            _player.velocity = totalMovement * speed;
-        }
-        
+        animator.SetBool(GameConstants.PlayerIsWalkingKey, totalMovement != Vector2.zero);
+        _player.velocity = totalMovement.normalized * speed;
+
         if (Input.GetAxisRaw(GameConstants.HorizontalAxis) > 0)
             _renderer.flipX = true;
         else if (Input.GetAxisRaw(GameConstants.HorizontalAxis) < 0)
