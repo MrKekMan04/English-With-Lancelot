@@ -1,6 +1,5 @@
 using System;
 using Mini_games;
-using Mini_games.Words_By_Hints;
 
 public class WbhGame : GameWithKeyboard
 {

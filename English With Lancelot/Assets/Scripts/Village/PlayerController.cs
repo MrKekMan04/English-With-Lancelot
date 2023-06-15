@@ -1,4 +1,3 @@
-using System;
 using Mini_games;
 using UnityEngine;
 
@@ -15,7 +14,7 @@ public class PlayerController : MonoBehaviour
     {
         _player = GetComponent<Rigidbody2D>();
         _renderer = GetComponent<SpriteRenderer>();
-        transform.position = new Vector3(PlayerPrefs.GetFloat("X"), PlayerPrefs.GetFloat("Y"), 0);
+        transform.position = new Vector3(PlayerPrefs.GetFloat("X", 0), PlayerPrefs.GetFloat("Y", 0), 0);
     }
 
     private void FixedUpdate() => Move();
@@ -28,7 +27,7 @@ public class PlayerController : MonoBehaviour
         var totalMovement = new Vector2(horizontalMovement, verticalMovement);
         
         animator.SetBool(GameConstants.PlayerIsWalkingKey, totalMovement != Vector2.zero);
-        _player.velocity = totalMovement * speed;
+        _player.velocity = totalMovement.normalized * speed;
 
         if (Input.GetAxisRaw(GameConstants.HorizontalAxis) > 0)
             _renderer.flipX = true;

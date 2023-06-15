@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Mini_games.Words_By_Hints
+namespace Mini_games
 {
     public class Level
     {
